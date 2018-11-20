@@ -27,6 +27,7 @@ coords<-unique(coords)
 print(length(unique(coords$macid)))
 #coords$y=nrow(img)-coords$y
 img <- readPNG(image_file)
+coords$distance=coords$distance*nrow(img)/max(coords[["distance"]])
 
 
 #fb %>% filter(x >1, x <1.25, y >2.5, y < 2.75) -> fb
@@ -57,6 +58,7 @@ dataSubset[,logAccuracy := log(accuracy)]
 
 # Add the accuracy groups
 dataSubset[,accuracyGroup := cut(accuracy, breaks=c(0,45,85,1e5))]
+
 
 dataSubset<-unique(dataSubset)
 print(length(unique(dataSubset$macid)))

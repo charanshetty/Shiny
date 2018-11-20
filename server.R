@@ -81,8 +81,9 @@ shinyServer(function(input, output, session) {
   #  print(circleData$macid)
     if(input$xyType == "Observations"){
       p3 <- plot_ly( circleData)%>%
-        add_markers(x=~x,y=~y,text=~distance,
-                    marker=list( size=~I(distance),sizemode="diameter",sizeref=nrow(img)/max(coords[["distance"]]), opacity=.3,  colorscale='Viridis',  colorbar=list(
+        add_markers(x=~x,y=~y,text=~distance,sizes=c(min(coords[["distance"]]),max(coords[["distance"]])),
+                    marker=list( size=~I(distance),sizemode="diameter",sizeref=nrow(img)/max(coords[["distance"]])
+, opacity=.3,  colorscale='Viridis',  colorbar=list(
                       title="distance"
                     ),color=coords[["distance"]]
                     )) %>%
